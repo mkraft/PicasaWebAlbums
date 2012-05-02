@@ -43,6 +43,7 @@ module PhotosRepository
     photo.height = entry.elements["media:group/media:content"].attributes["height"].to_i
     photo.caption = entry.elements["media:group/media:description"].text
     photo.file_name = entry.elements["media:group/media:title"].text
+    photo.thumb = entry.elements["media:group/media:thumbnail"].attributes["url"]
     photo
   end
 

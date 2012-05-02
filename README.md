@@ -82,6 +82,7 @@ Domain Object Properties
 - `width`
 - `height`
 - `file_name`
+- `thumb`
 
 ### Album
 
