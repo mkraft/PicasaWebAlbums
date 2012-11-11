@@ -21,6 +21,17 @@ module PhotosRepository
     end
     photo_to_return
   end
+
+  def get_recent_photos(count)
+    url = "http://picasaweb.google.com/data/feed/api/user/#{@email}?kind=photo&max-results=#{count}"
+    xml = get_xml(url)
+    photos = []
+    xml.root.elements.each("//entry") do |entry|
+      photo = get_photo_from_xml_element(entry)
+      photos << photo                                                                                                                                                      
+    end                                                                                                                                                                    
+    photos                                                                                                                                                                 
+  end
   
   def get_photos_by_tags(tags)
     url = "http://picasaweb.google.com/data/feed/api/user/#{@email}?kind=photo&tag=#{get_tags_string(tags)}"
