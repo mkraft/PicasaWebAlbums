@@ -9,7 +9,8 @@ Gem::Specification.new do |s|
   s.email       = ["martinkraft@gmail.com"]
   s.homepage    = "https://github.com/mkraft/PicasaWebAlbums"
   s.summary     = %q{Provides programmatic access to Picasa Web Albums data.}
-  s.description = %q{A simple way to retrieve albums, photos, tags, etc. from Picasa Web Albums.}
+  s.description = %q{A simple way to retrieve albums, photos, tags, etc. from 
+                    Picasa Web Albums.}
   s.license     = 'MIT'
   s.rubyforge_project = "picasawebalbums"
   s.required_ruby_version = '>= 1.9.3'

@@ -11,10 +11,9 @@ Installation
 Rails/Application Integration
 -----------------------------
 
-Add one of the below lines to the Gemfile:
+Add the below to the Gemfile:
 
-- `gem 'picasawebalbums, :require => 'PicasaWebAlbums'`
-- `gem 'picasawebalbums', :require => 'PicasaWebAlbums', :git => 'git@github.com:mkraft/PicasaWebAlbums.git'`
+- `gem 'picasawebalbums, require: 'PicasaWebAlbums'`
 
 Then run `bundle install`
 
@@ -43,7 +42,10 @@ Get photos with specific tags
 Testing
 -------
 
-To run integration tests, replace the values in `/test/config/test_account.yml` with known values from a real Picasa Web Albums account. The `album` can be any album in the account (no changes will be made to it). The `photo` must be from the chosen `album`. Run:
+To run integration tests, replace the values in `/test/config/test_account.yml` 
+with known values from a real Picasa Web Albums account. The `album` can be any 
+album in the account (no changes will be made to it). The `photo` must be from 
+the chosen `album`. Run:
 
 	ruby test/tests.rb
 
@@ -117,7 +119,8 @@ Please feel free to log any bugs or feature requests in the [Issues tab on Githu
 Coming Down the Pike
 --------------------
 
-The goal is to completely mirror all of the Picasa Web Albums API features including
+The goal is to completely mirror all of the Picasa Web Albums API features 
+including
 
 - Update albums
 - Create, Update, Delete photos

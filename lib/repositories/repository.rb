@@ -22,13 +22,15 @@ module PicasaWebAlbums
       uri = URI(url)
       request = Net::HTTP::Get.new(uri.request_uri)
       request['Authorization'] = @authentication_token
-      response = Net::HTTP.start(uri.hostname, uri.port) { |http| http.request(request) }
+      response = Net::HTTP.start(uri.hostname, uri.port) do |http| 
+        http.request(request) 
+      end
       REXML::Document.new(response.body)
     end
 
     def get_authentication_token(email, password)
       uri = URI("https://www.google.com/accounts/ClientLogin")
-      body = Net::HTTP.start(uri.host, uri.port, :use_ssl => uri.scheme == 'https') do |http|
+      body = Net::HTTP.start(uri.host, uri.port, use_ssl: uri.scheme == 'https') do |http|
         request = Net::HTTP::Post.new uri.request_uri
         data = "accountType=HOSTED_OR_GOOGLE&Email=#{email}&Passwd=#{password}&service=lh2&source=someapp1"
         response = http.request(request, data)

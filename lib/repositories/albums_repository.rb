@@ -39,21 +39,6 @@ module AlbumsRepository
     res.code
   end
   
-  #def update_album(modified_album)
-  #  atom = get_album_atom(modified_album)
-  #  uri = URI(modified_album.edit_url)
-  #  status = ""
-  #  Net::HTTP.start(uri.host, uri.port, :use_ssl => uri.scheme == 'https') do |http|
-  #    request = Net::HTTP::Put.new uri.request_uri
-  #    request['Authorization'] = @authentication_token
-  #    request['Content-Type'] = "application/atom+xml; charset=UTF-8; type=entry"
-  #    request.body = atom
-  #    response = http.request(request)
-  #    status = response.code
-  #  end
-  #  return status
-  #end
-  
   private
 
   def gallery_from_entry(entry)
@@ -75,7 +60,7 @@ module AlbumsRepository
   end
   
   def get_album_atom(album)
-    return "<entry xmlns='http://www.w3.org/2005/Atom' xmlns:media='http://search.yahoo.com/mrss/' xmlns:gphoto='http://schemas.google.com/photos/2007'><title type='text'>#{album.title}</title><summary type='text'>#{album.description}</summary><gphoto:location></gphoto:location><gphoto:access>#{album.access}</gphoto:access><gphoto:timestamp></gphoto:timestamp><media:group><media:keywords></media:keywords></media:group><category scheme='http://schemas.google.com/g/2005#kind' term='http://schemas.google.com/photos/2007#album'></category></entry>"
+    "<entry xmlns='http://www.w3.org/2005/Atom' xmlns:media='http://search.yahoo.com/mrss/' xmlns:gphoto='http://schemas.google.com/photos/2007'><title type='text'>#{album.title}</title><summary type='text'>#{album.description}</summary><gphoto:location></gphoto:location><gphoto:access>#{album.access}</gphoto:access><gphoto:timestamp></gphoto:timestamp><media:group><media:keywords></media:keywords></media:group><category scheme='http://schemas.google.com/g/2005#kind' term='http://schemas.google.com/photos/2007#album'></category></entry>"
   end
   
   def get_edit_url_from_entry(entry)
@@ -91,7 +76,7 @@ module AlbumsRepository
   def post_new_album(data)
     uri = URI("https://picasaweb.google.com/data/feed/api/user/#{@email}")
     status = ""
-    Net::HTTP.start(uri.host, uri.port, :use_ssl => uri.scheme == 'https') do |http|
+    Net::HTTP.start(uri.host, uri.port, use_ssl: uri.scheme == 'https') do |http|
       request = Net::HTTP::Post.new uri.request_uri
       request['Authorization'] = @authentication_token
       request['Content-Type'] = "application/atom+xml; charset=UTF-8; type=entry"
