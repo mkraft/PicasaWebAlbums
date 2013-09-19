@@ -4,7 +4,8 @@ require_relative '../domain/album'
 module AlbumsRepository
   def get_all_albums
     xml = get_xml("http://picasaweb.google.com/data/feed/api/user/#{@email}?kind=album&access=all")
-    xml.root.elements.collect("//entry") { |entry| gallery_from_entry(entry) }
+    albums = xml.root.elements.collect("//entry") { |entry| gallery_from_entry(entry) }
+    albums
   end
 
   def get_album_by_id(id)
@@ -50,9 +51,9 @@ module AlbumsRepository
     gallery.slug = entry.elements["gphoto:name"].text
     gallery.access = entry.elements["gphoto:access"].text
     gallery.number_of_photos = entry.elements["gphoto:numphotos"].text.to_i
-    gallery.number_of_comments = entry.elements["gphoto:commentCount"].text.to_i
-    gallery.number_of_photos_remaining = entry.elements["gphoto:numphotosremaining"].text.to_i
-    gallery.total_bytes = entry.elements["gphoto:bytesUsed"].text.to_i
+    gallery.number_of_comments = (entry.elements["gphoto:commentCount"].nil? ? 0 : entry.elements["gphoto:commentCount"].text.to_i)
+    gallery.number_of_photos_remaining = (entry.elements["gphoto:numphotosremaining"].nil? ? 0 : entry.elements["gphoto:numphotosremaining"].text.to_i)
+    gallery.total_bytes = (entry.elements["gphoto:bytesUsed"].nil? ? 0 : entry.elements["gphoto:bytesUsed"].text.to_i)
     gallery.cover_photo_url = entry.elements["media:group/media:content"].attributes["url"]
     gallery.description = entry.elements["media:group/media:description"].text
     gallery.edit_url = get_edit_url_from_entry(entry)
