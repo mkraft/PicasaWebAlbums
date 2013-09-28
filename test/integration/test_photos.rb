@@ -27,6 +27,13 @@ module PicasaWebAlbums
       photos = @repo.get_photos_by_tags(tags_array)
       assert_equal photos.count, @test_account["album"]["number_of_photos"]
     end
+
+    def test_photo_has_thumbnail
+      album = @repo.get_album_by_id(@test_account["album"]["id"])
+      photos = @repo.get_photos_by_album_id(album.id)
+      photo = photos.first
+      assert_block { photo.thumb =~ /^http:\/\/.*.png$/i }
+    end
   
   end
 end
