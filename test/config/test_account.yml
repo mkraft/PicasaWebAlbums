@@ -5,7 +5,8 @@ album:
     title: Bio Profile Pics
     id: "5689734429356072049"
     slug: BioProfilePics
-    number_of_photos: 1
+    number_of_photos: 2
+    number_of_tagged_photos: 1
     photo:
         id: "5689734429327880498"
         caption: Testing!!!?

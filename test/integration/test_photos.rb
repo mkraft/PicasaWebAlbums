@@ -25,7 +25,7 @@ module PicasaWebAlbums
     def test_get_photos_by_tags
       tags_array = Array.new(1, @test_account["album"]["photo"]["tag"])
       photos = @repo.get_photos_by_tags(tags_array)
-      assert_equal photos.count, @test_account["album"]["number_of_photos"]
+      assert_equal photos.count, @test_account["album"]["number_of_tagged_photos"]
     end
 
     def test_photo_has_thumbnail
