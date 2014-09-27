@@ -13,7 +13,7 @@ Rails/Application Integration
 
 Add the below to the Gemfile:
 
-- `gem 'picasawebalbums, require: 'PicasaWebAlbums'`
+- `gem 'picasawebalbums', require: 'PicasaWebAlbums'`
 
 Then run `bundle install`
 
