@@ -2,7 +2,7 @@ require_relative '../domain/photo'
 
 module PhotosRepository
   def get_photos_by_album_id(id)
-    xml = get_xml("http://picasaweb.google.com/data/feed/base/user/#{@email}/albumid/#{id}")
+    xml = get_xml("http://picasaweb.google.com/data/feed/base/user/#{@email}/albumid/#{id}?imgdl=1")
     photos = []
     xml.root.elements.each("//entry") do |entry|
       photo = get_photo_from_xml_element(entry)
